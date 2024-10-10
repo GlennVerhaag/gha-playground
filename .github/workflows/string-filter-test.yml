@@ -11,7 +11,7 @@ jobs:
   string-tester:
     runs-on: ubuntu-latest
     env:
-      STABLE_BRANCH: "${{github.ref_name}}"
+      STABLE_BRANCH: ${{github.ref_name}}
 
     steps:
 
@@ -20,13 +20,13 @@ jobs:
 
       - name: Remove hotfix substring 
         id: clean-branchname
-        if: contains(github.ref_name, 'hotfix')
+        if: contains(env.STABLE_BRANCH, 'hotfix')
         shell: bash
         run: |
             prefix="hotfix-"
-            ref_name="${{ github.ref_name }}"
-            new_string=${ref_name#"$prefix"}
-            echo "STABLE_BRANCH=$new_string" >> $GITHUB_ENV
+            input= $STABLE_BRANCH
+            output=${input#"$prefix"}
+            echo "STABLE_BRANCH=$output" >> $GITHUB_ENV
 
       - name: Print 
         id: print
