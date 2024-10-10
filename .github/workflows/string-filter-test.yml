@@ -1,0 +1,30 @@
+name: '[Build] hotfix'
+run-name: "Build hotfix for '${{ github.ref_name }}'"
+
+on:
+    push:
+        branches:
+            - 'hotfix**'
+
+jobs:
+  string-tester:
+    runs-on: [ ubuntu, latest ]
+
+    steps:
+      - name: Remove hotfix substring 
+        id: clean-branchname
+        if: contains(github.ref_name, 'hotfix')
+        shell: bash
+        run: |
+            prefix='hotfix-'
+            ref-name = ${{ github.ref_name }}
+            new-string=${ref-name#"$prefix"}
+            echo "stable-branch=${new-string}" >> $GITHUB_OUTPUT
+
+      - name: Print 
+        id: print
+        if: contains(github.ref_name, 'hotfix')
+        shell: bash
+        run: |
+            echo ${{ steps.clean-branchname.outputs.stable-branch }}        
+                
