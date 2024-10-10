@@ -9,22 +9,28 @@ on:
 jobs:
   string-tester:
     runs-on: ubuntu-latest
+    env:
+      STABLE_BRANCH: "${{github.ref_name}}"
 
     steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Remove hotfix substring 
         id: clean-branchname
         if: contains(github.ref_name, 'hotfix')
         shell: bash
         run: |
-            prefix='hotfix-'
-            ref-name = ${{ github.ref_name }}
-            new-string=${ref-name#"$prefix"}
-            echo "stable-branch=${new-string}" >> $GITHUB_OUTPUT
+            prefix="hotfix-"
+            ref_name="${{ github.ref_name }}"
+            new_string=${ref_name#"$prefix"}
+            echo "STABLE_BRANCH=$new_string" >> $GITHUB_ENV
 
       - name: Print 
         id: print
         if: contains(github.ref_name, 'hotfix')
         shell: bash
         run: |
-            echo ${{ steps.clean-branchname.outputs.stable-branch }}        
+            echo "The ref name is $STABLE_BRANCH"        
                 
