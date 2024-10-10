@@ -29,7 +29,6 @@ jobs:
 
       - name: Print 
         id: print
-        if: contains(github.ref_name, 'hotfix')
         shell: bash
         run: |
             echo "The ref name is $STABLE_BRANCH"        
