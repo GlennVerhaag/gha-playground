@@ -20,7 +20,7 @@ jobs:
         if: contains(github.ref_name, 'hotfix')
         shell: bash
         run: |
-            prefix="hotfix-""
+            prefix="hotfix-"
             ref-name="${{ github.ref_name }}"
             new-string=${ref-name#"$prefix"}
             echo "stable-branch=$new-string" >> $GITHUB_ENV
