@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
             prefix='hotfix-'
-            ref-name = ${{ github.ref_name }}
+            ref-name = '${{ github.ref_name }}'
             new-string=${ref-name#"$prefix"}
             echo "stable-branch=${new-string}" >> $GITHUB_OUTPUT
 
