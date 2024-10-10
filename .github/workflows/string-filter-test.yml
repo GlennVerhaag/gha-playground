@@ -22,7 +22,7 @@ jobs:
         run: |
             prefix="hotfix-"
             ref_name="${{ github.ref_name }}"
-            new_string=${ref-name#"$prefix"}
+            new_string=${ref_name#"$prefix"}
             echo "stable_branch=$new_string" >> $GITHUB_ENV
 
       - name: Print 
