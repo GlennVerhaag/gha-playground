@@ -1,10 +1,11 @@
-name: '[Build] hotfix'
-run-name: "Build hotfix for '${{ github.ref_name }}'"
+name: '[Build]'
+run-name: "Build for '${{ github.ref_name }}'"
 
 on:
     push:
         branches:
             - 'hotfix**'
+            - 'master'
 
 jobs:
   string-tester:
