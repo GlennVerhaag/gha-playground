@@ -43,4 +43,7 @@ jobs:
         if: env.PUSH_TO_HOTFIX_BRANCH == 'true'
         shell: bash
         run: |
+            BASE="origin/$STABLE_BRANCH"
+            [ "$PUSH_TO_HOTFIX_BRANCH" == "true" ] && BASE="${BASE}~1"
+            echo "Base: $BASE"
             echo "PUSH_TO_HOTFIX_BRANCH is $PUSH_TO_HOTFIX_BRANCH"        
