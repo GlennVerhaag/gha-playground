@@ -13,6 +13,7 @@ jobs:
     env:
       STABLE_BRANCH: ${{github.ref_name}}
       PREVIOUS_COMMIT: ${{github.ref_name}}~1
+      PUSH_TO_HOTFIX_BRANCH: ${{ github.event_name == 'push' && startsWith(github.ref_name, 'hotfix-') }}
 
     steps:
 
@@ -35,3 +36,4 @@ jobs:
         run: |
             echo "The ref name is $STABLE_BRANCH"        
             echo "The previous commit is $PREVIOUS_COMMIT"    
+            echo "Push to hotfix branch? $PUSH_TO_HOTFIX_BRANCH"
