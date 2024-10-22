@@ -26,7 +26,6 @@ jobs:
         run: |
             prefix="hotfix-"
             input= $STABLE_BRANCH
-            echo "Input is $input" 
             output=${input#"$prefix"}
             echo "STABLE_BRANCH=$output" >> $GITHUB_ENV
 
